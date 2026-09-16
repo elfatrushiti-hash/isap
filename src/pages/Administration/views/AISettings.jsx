@@ -1,0 +1,3 @@
+import { BrainCircuit, LockKeyhole } from 'lucide-react'
+import AdminCard from '../components/AdminCard.jsx'
+export default function AISettings() { return <AdminCard icon={BrainCircuit} label="AI Settings"><div className="admin-setting-list"><span><strong>ISAP Rule Intelligence</strong><small>Active</small></span><span><strong>Hybrid intelligence</strong><small>Architecture reserved</small></span><span><strong>External AI provider</strong><small><LockKeyhole size={12}/> Disabled by policy</small></span></div><p style={{marginTop:16}}>No external AI endpoint or credential is configured. External AI activation is intentionally deferred to Security and Compliance approval.</p></AdminCard> }

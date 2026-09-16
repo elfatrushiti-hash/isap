@@ -1,0 +1,197 @@
+.cap-pro-page {
+  min-height: 100vh;
+  padding: 42px;
+  color: #17141f;
+}
+
+.cap-pro-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.cap-pro-kicker {
+  color: #3b1766;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cap-pro-header h1 {
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 0.94;
+  letter-spacing: -0.07em;
+  margin: 10px 0 8px;
+}
+
+.cap-pro-header p {
+  margin: 0;
+  color: #746c80;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.cap-pro-score,
+.cap-pro-card,
+.cap-pro-hero,
+.cap-pro-panel {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #e9e3ef;
+  border-radius: 32px;
+  box-shadow: 0 14px 40px rgba(38, 18, 62, 0.07);
+}
+
+.cap-pro-score {
+  padding: 24px;
+}
+
+.cap-pro-score span {
+  display: block;
+  color: #746c80;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cap-pro-score strong {
+  display: block;
+  margin-top: 8px;
+  color: #3b1766;
+  font-size: 42px;
+  letter-spacing: -0.05em;
+}
+
+.cap-pro-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.cap-pro-main {
+  display: grid;
+  gap: 24px;
+}
+
+.cap-pro-hero {
+  padding: 42px;
+  box-shadow: 0 24px 80px rgba(38, 18, 62, 0.1);
+}
+
+.cap-pro-pill {
+  display: inline-flex;
+  background: #f3eef8;
+  color: #3b1766;
+  border: 1px solid #e5d9ef;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.cap-pro-hero h2 {
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.07em;
+  margin: 20px 0;
+}
+
+.cap-pro-hero textarea {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid #e9e3ef;
+  border-radius: 22px;
+  padding: 18px;
+  font: inherit;
+  line-height: 1.5;
+  color: #17141f;
+  resize: vertical;
+  background: #ffffff;
+}
+
+.cap-pro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.cap-pro-card,
+.cap-pro-panel {
+  padding: 24px;
+}
+
+.cap-pro-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #3b1766;
+  margin-bottom: 18px;
+}
+
+.cap-pro-title strong {
+  color: #17141f;
+}
+
+.cap-pro-list {
+  display: grid;
+  gap: 12px;
+}
+
+.cap-pro-list label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #ffffff;
+  border: 1px solid #e9e3ef;
+  border-radius: 20px;
+  padding: 15px;
+  color: #4f4858;
+  line-height: 1.45;
+}
+
+.cap-pro-panel {
+  display: grid;
+  gap: 12px;
+  position: sticky;
+  top: 32px;
+}
+
+.cap-pro-panel button {
+  border: 0;
+  background: #3b1766;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font-weight: 950;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  justify-content: center;
+}
+
+@media (max-width: 1150px) {
+  .cap-pro-layout,
+  .cap-pro-grid,
+  .cap-pro-header {
+    grid-template-columns: 1fr;
+  }
+
+  .cap-pro-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .cap-pro-page {
+    padding: 22px;
+  }
+
+  .cap-pro-hero {
+    padding: 28px;
+  }
+}
