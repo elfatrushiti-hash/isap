@@ -166,13 +166,24 @@ function dedupePeople(people = []) {
   return [...map.values()].slice(0,20)
 }
 
+function sameOriginRequest(req) {
+  const host = req.headers['x-forwarded-host'] || req.headers.host
+  const origin = req.headers.origin
+  if (!origin) return req.headers['sec-fetch-site'] === 'same-origin'
+  try { return new URL(origin).host === host } catch { return false }
+}
+
 export default async function handler(req, res) {
   res.setHeader('Cache-Control','no-store')
   if (req.method !== 'POST') return res.status(405).json({ error:'POST required.' })
+  if (!sameOriginRequest(req)) return res.status(403).json({ error:'Cross-origin requests are not allowed.' })
+  if (!String(req.headers['content-type'] || '').toLowerCase().startsWith('application/json')) return res.status(415).json({ error:'JSON required.' })
   try {
-    const start = await validateUrl(String(req.body?.url || '').trim())
+    const rawUrl = String(req.body?.url || '').trim()
+    if (rawUrl.length > 2048) throw new Error('URL is too long.')
+    const start = await validateUrl(rawUrl)
     const host = start.hostname
-    const terms = productTerms(req.body?.products || [])
+    const terms = productTerms(Array.isArray(req.body?.products) ? req.body.products.slice(0, 50) : [])
     const first = await safeFetch(start.toString(), host)
     const candidates = linksOf(first.html, first.url, host)
       .filter((item)=>new URL(item.url).pathname !== new URL(first.url).pathname)
