@@ -1,4 +1,4 @@
-import { ClipboardCheck, FileOutput, Mail, Send, Sparkles } from 'lucide-react'
+import { ClipboardCheck, Mail, Send, Sparkles } from 'lucide-react'
 import IsapShell from '../../components/isap/IsapShell.jsx'
 import './CapturePro.css'
 
@@ -94,16 +94,6 @@ export default function CapturePro({ selectedMeeting, onNavigate }) {
               <Sparkles size={18} />
               <strong>AI Outputs</strong>
             </div>
-
-            <button type="button">
-              <FileOutput size={17} />
-              Salesforce Export
-            </button>
-
-            <button type="button">
-              <FileOutput size={17} />
-              Dynamics Export
-            </button>
 
             <button type="button">
               <Mail size={17} />
