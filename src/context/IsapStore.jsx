@@ -25,12 +25,35 @@ function hydrateMeeting(meeting) {
   return meeting.status === MEETING_STATUS.INTELLIGENCE_RUNNING ? initializeIntelligence(meeting) : meeting
 }
 
+function readStored(key, fallback) {
+  try {
+    const stored = window.localStorage.getItem(key)
+    return stored ? JSON.parse(stored) : fallback
+  } catch {
+    return fallback
+  }
+}
+
+function writeStored(key, value) {
+  try { window.localStorage.setItem(key, JSON.stringify(value)) } catch {}
+}
+
 export function IsapStoreProvider({ children }) {
-  const [meetings, setMeetings] = useState(() => initialMeetings.map(hydrateMeeting))
-  const [tasks, setTasks] = useState(initialTasks)
-  const [selectedMeetingId, setSelectedMeetingId] = useState(
-    initialMeetings.find((meeting) => meeting.status !== MEETING_STATUS.ARCHIVED)?.id || null
-  )
+  const [meetings, setMeetings] = useState(() => {
+    const stored = readStored('isap-meetings', null)
+    return (Array.isArray(stored) ? stored : initialMeetings).map(hydrateMeeting)
+  })
+  const [tasks, setTasks] = useState(() => {
+    const stored = readStored('isap-tasks', null)
+    return Array.isArray(stored) ? stored : initialTasks
+  })
+  const [selectedMeetingId, setSelectedMeetingId] = useState(() => {
+    const storedMeetings = readStored('isap-meetings', null)
+    const list = Array.isArray(storedMeetings) ? storedMeetings : initialMeetings
+    const storedId = readStored('isap-selected-meeting', null)
+    if (storedId && list.some((meeting) => meeting.id === storedId)) return storedId
+    return list.find((meeting) => meeting.status !== MEETING_STATUS.ARCHIVED)?.id || null
+  })
   const [dashboardFilter, setDashboardFilter] = useState('ACTIVE')
   const [adminState, setAdminState] = useState(initialAdminState)
   const [products, setProducts] = useState(() => {
@@ -97,6 +120,10 @@ export function IsapStoreProvider({ children }) {
       return initialPresentations
     }
   })
+
+  useEffect(() => { writeStored('isap-meetings', meetings) }, [meetings])
+  useEffect(() => { writeStored('isap-tasks', tasks) }, [tasks])
+  useEffect(() => { writeStored('isap-selected-meeting', selectedMeetingId) }, [selectedMeetingId])
 
   useEffect(() => {
     window.localStorage.setItem('isap-products', JSON.stringify(products))
