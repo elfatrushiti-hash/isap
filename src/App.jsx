@@ -5,6 +5,7 @@ import FoundationDashboard from './pages/FoundationDashboard/FoundationDashboard
 import ArchiveCenter from './pages/ArchiveCenter/ArchiveCenter.jsx'
 import SettingsWorkspace from './pages/SettingsWorkspace/SettingsWorkspace.jsx'
 import MeetingIntake from './pages/MeetingIntake/MeetingIntake.jsx'
+import IntelligenceWorkspace from './pages/IntelligenceWorkspace/IntelligenceWorkspace.jsx'
 import AIAdvisor from './pages/AIAdvisor/AIAdvisor.jsx'
 import CompanyIntelligence from './pages/CompanyIntelligence/CompanyIntelligence.jsx'
 import CRMWorkspace from './pages/CRMWorkspace/CRMWorkspace.jsx'
@@ -27,6 +28,7 @@ function IsapApplication() {
     if (activeView === 'intake') return <MeetingIntake {...sharedProps} />
     if (activeView === 'archive') return <ArchiveCenter {...sharedProps} />
     if (activeView === 'settings') return <SettingsWorkspace {...sharedProps} />
+    if (activeView === 'intelligence') return selectedMeeting ? <IntelligenceWorkspace {...sharedProps} /> : <FoundationDashboard {...sharedProps} />
     if (activeView === 'advisor') return selectedMeeting ? <AIAdvisor {...sharedProps} /> : <FoundationDashboard {...sharedProps} />
     if (activeView === 'company') return selectedMeeting ? <CompanyIntelligence {...sharedProps} /> : <FoundationDashboard {...sharedProps} />
     if (activeView === 'crm') return selectedMeeting ? <CRMWorkspace {...sharedProps} /> : <FoundationDashboard {...sharedProps} />
